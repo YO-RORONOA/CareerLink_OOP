@@ -38,6 +38,15 @@ class user{
 
     }
 
+    public function getuserbyid($id)
+    {
+        $query = "SELECT *
+        from users where id = :id";
+        $stmt= $this->db->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->exicute();
+        return $stmt->fetch(PDO::FETCH_ASSOC)  ;    
+    }
 
 
 }
