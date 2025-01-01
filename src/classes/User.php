@@ -31,10 +31,10 @@ class user{
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':name', $this->name);
         $stmt->bindParam(':phone_number', $this->phone_number);
-        $stmt->bindParam(':email_adress', $this->email_adress);
+        $stmt->bindParam(':email_adress', $this->email_address);
         $stmt->bindParam(':password', $this->password);
         $stmt->bindParam(':role', $this->role);
-        return $stmt->exicute();
+        return $stmt->execute();
 
     }
 
@@ -44,7 +44,7 @@ class user{
         from users where id = :id";
         $stmt= $this->db->prepare($query);
         $stmt->bindParam(':id', $id);
-        $stmt->exicute();
+        $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC)  ;    
     }
 
