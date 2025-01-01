@@ -52,7 +52,35 @@ class Offre
     }
 
 
+    public function deleteoffre($id)
+    {
+        $query = "DELETE FROM offre WHERE id = :id";
+        $stmt = $this->db->prepare($query);
 
+        $stmt->bindParam(':id', $id);
+
+        return $stmt->execute();
+    }
+
+
+    public function updateOffre($id)
+    {
+        $query = "UPDATE offre
+                  SET name_offre = :name_offre, adress_offre = :adress_offre, salaire = :salaire, 
+                      categorie_id = :categorie_id, recruteur_id = :recruteur_id, archived = :archived
+                  WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+
+        $stmt->bindParam(':name_offre', $this->name_offre);
+        $stmt->bindParam(':adress_offre', $this->adress_offre);
+        $stmt->bindParam(':salaire', $this->salaire);
+        $stmt->bindParam(':categorie_id', $this->categorie_id);
+        $stmt->bindParam(':recruteur_id', $this->recruteur_id);
+        $stmt->bindParam(':archived', $this->archived);
+        $stmt->bindParam(':id', $id);
+
+        return $stmt->execute();  
+    }
 
 }
 
