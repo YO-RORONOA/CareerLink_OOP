@@ -16,7 +16,7 @@ class categorie
     {
         $this->name_categorie=$name_categorie;
     }
-    
+
     public function createcategorie()
     {
         $query = "INSERT into categorie(name_categorie)
@@ -30,7 +30,7 @@ class categorie
     {
         $query = "UPDATE categorie set name_categorie = :newname where id= :id";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':newName', $newname);
+        $stmt->bindParam(':newname', $newname);
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
@@ -38,10 +38,17 @@ class categorie
     public function deletecategorie($id)
     {
         $query = "DELETE from categorie where id = :id";
-        $stmt = $this->db->prepared($query);
+        $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     
+    }
+
+    public function getallcategories()
+    {
+        $query= "SELECT * from categorie";
+        $stmt= $this->db->prepare($query);
+        return $stmt->fetchall(PDO::FETCH_ASSOC);
     }
 
     
