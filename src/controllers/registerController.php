@@ -50,7 +50,8 @@ class registervalidation{
 
 
     
-    if (!empty($error_message)){
+    if (!empty($error_message))
+    {
         $_SESSION['error_message'] = $error_message;
         $_SESSION['formdata'] = $formdata;
         header("Location: ../views/register.php");

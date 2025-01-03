@@ -10,11 +10,10 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <!-- Left Container - Login Form -->
             <div class="col-md-6 left-container">
                 <div class="register-form">
                     <h2 class="mb-4">Login</h2>
-                    <form method="POST" action="../controllers/loginController.php">
+                    <form method="POST" action="../controllers/logincontroller.php">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input name="email" type="email" class="form-control" id="email" placeholder="Enter your email">
@@ -28,7 +27,6 @@
                 </div>
             </div>
 
-            <!-- Right Container - Info Section -->
             <div class="col-md-6 right-container">
                 <div>
                     <h1 class="mb-4">Welcome Back!</h1>

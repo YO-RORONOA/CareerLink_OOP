@@ -38,14 +38,14 @@ class user{
 
     }
 
-    public function getuserbyid($id)
+    public function getuserbyid($email)
     {
         $query = "SELECT *
-        from users where id = :id";
+        from users where email = :email";
         $stmt= $this->db->prepare($query);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id', $email);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC)  ;    
+        return $stmt->fetch(PDO::FETCH_ASSOC);    
     }
 
 
