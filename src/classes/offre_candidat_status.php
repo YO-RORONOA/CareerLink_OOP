@@ -1,5 +1,8 @@
 <?php
 
+namespace Youcode\CareerLinkOop\categorie;
+
+
 class OffreCandidatStatus {
     private $db;
     public $id;

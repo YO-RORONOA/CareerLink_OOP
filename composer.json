@@ -1,0 +1,15 @@
+{
+    "name": "youcode/career-link_oop",
+    "autoload": {
+        "psr-4": {
+            "load\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ouahmane youness",
+            "email": "youness.ouahmane4@gmail.com"
+        }
+    ],
+    "require": {}
+}

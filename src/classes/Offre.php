@@ -1,5 +1,8 @@
 <?php
 
+namespace Youcode\CareerLinkOop\offre;
+
+
 class Offre
 {
     private $db;

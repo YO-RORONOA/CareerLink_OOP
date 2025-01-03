@@ -1,5 +1,8 @@
 <?php
 
+namespace Youcode\CareerLinkOop\registercontrol;
+
+
 session_start();
 
 $formdata= [];
@@ -63,5 +66,5 @@ class registervalidation{
 
 }
 
-$validate = new registervalidation;
+
 $validate->validateform($_POST);

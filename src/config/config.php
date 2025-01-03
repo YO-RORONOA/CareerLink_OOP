@@ -1,5 +1,7 @@
 <?php
 
+namespace Youcode\CareerLinkOop\config;
+
 class database
 {
     private $host = "localhost";

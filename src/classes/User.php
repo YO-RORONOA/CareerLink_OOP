@@ -1,5 +1,9 @@
 <?php
 
+namespace Youcode\CareerLinkOop\user;
+
+
+
 class user{
     protected $db;
     protected $id;
