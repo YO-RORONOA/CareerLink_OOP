@@ -82,6 +82,41 @@ class Offre
         return $stmt->execute();  
     }
 
+
+
+
+    public function addTagsToOffer($offre_id, $tag_ids) {
+        $query = "INSERT INTO offer_tags (offre_id, tag_id) VALUES (:offre_id, :tag_id)";
+        $stmt = $this->db->prepare($query);
+    
+        foreach ($tag_ids as $tag_id) {
+            $stmt->bindParam(':offre_id', $offre_id, PDO::PARAM_INT);
+            $stmt->bindParam(':tag_id', $tag_id, PDO::PARAM_INT);
+            $stmt->execute();
+        }
+        return true;
+    }
+
+    public function getTagsForOffer($offre_id) {
+        $query = "SELECT t.name_tag 
+                  FROM tag t 
+                  INNER JOIN offer_tags ot ON t.id = ot.tag_id 
+                  WHERE ot.offre_id = :offre_id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':offre_id', $offre_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function removeTagsFromOffer($offre_id) {
+        $query = "DELETE FROM offer_tags WHERE offre_id = :offre_id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':offre_id', $offre_id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+    
+    
+
 }
 
 
