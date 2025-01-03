@@ -44,11 +44,21 @@ unset($_SESSION['error_message'], $_SESSION['formdata']);
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input name="email" type="email" class="form-control" id="email" placeholder="Enter your email">
+                            <input name="email" type="email" class="form-control" id="email" placeholder="Enter your email"
+
+                            value="<?php echo isset($formData['email']) ? $formData['email'] : ''; ?>">
+                            <?php if(isset($errors['email'])): ?>
+                                <small class="text-danger"><?php echo $errors['email']; ?></small>
+                            <?php endif; ?>
+
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone Number</label>
-                            <input name="phone" type="text" class="form-control" id="phone" placeholder="Enter your phone number">
+                            <input name="phone" type="text" class="form-control" id="phone" placeholder="Enter your phone number"
+                            value="<?php echo isset($formData['phone']) ? $formData['phone']: '';?>">
+                            <?php if(isset($errors['phone'])): ?>
+                                <small class="text-danger"><?php echo $errors['phone']; ?></small>
+                            <?php endif;?>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
