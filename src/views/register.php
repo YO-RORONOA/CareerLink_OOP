@@ -62,7 +62,11 @@ unset($_SESSION['error_message'], $_SESSION['formdata']);
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input name="password" type="password" class="form-control" id="password" placeholder="Enter your password">
+                            <input name="password" type="password" class="form-control" id="password" placeholder="Enter your password"
+                            value="<?php isset($formData['password']) ? $formData['password']: ''; ?>">
+                            <?php if(isset($errors['password'])):?>
+                                <small class="text-danger"><?php echo $errors['password'];?></small>
+                            <?php endif;?>
                         </div>
                         <div class="mb-3">
                             <label for="role" class="form-label">Role</label>

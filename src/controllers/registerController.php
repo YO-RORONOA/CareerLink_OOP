@@ -46,6 +46,8 @@ class registervalidation{
         $error_message['password'] = "Password must be at least 6 characters.";
     }
 
+    $hashedpassword= password_hash($password, PASSWORD_DEFAULT);
+
 
     
     if (!empty($error_message)){

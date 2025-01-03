@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+.left-container {
+    background-color: #343a40;
+    color: black!important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 100vh;
+}
+.right-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 100vh;
+}
+.register-form {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+.advantage-list {
+    list-style: none;
+    padding: 0;
+}
+.advantage-list li {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+.advantage-list li i {
+    color: #00d9a5;
+    margin-right: 10px;
+}
