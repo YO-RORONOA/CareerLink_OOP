@@ -1,12 +1,12 @@
 <?php
 
 
-class database
+class Database
 {
     private $host = "localhost";
     private $user_name = "root";
     private $password = "";
-    private $db_name = "career_link";
+    private $db_name = "ultimate";
     private $conn;
 
     public function connect()

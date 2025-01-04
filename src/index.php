@@ -5,12 +5,10 @@ require './classes/User.php';
 require './config/config.php';
 
 
-// $db = new database;
-// $conn = $db->connect();
 
 
+// new registration
 $validate = new Registercontroller;
 $validate->validateform($_POST);
-$validate-> createuser();
 
 

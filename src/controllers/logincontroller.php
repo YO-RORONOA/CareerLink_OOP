@@ -1,59 +1,76 @@
 <?php
 
-namespace Youcode\CareerLinkOop\logincontrol;
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../classes/User.php';
 
-use database;
-use user;
+
+
 
 session_start();
 
-$error_message = [];
 
 
-class logincontroller
+class Logincontroller
 {
     protected $db;
     protected $user;
+    protected $email;
+    protected $password;
+    protected $text_error = [];
+
+
+    
 
     public function __construct()
     {
-        $database = new database;
-        $this->db= $database->connect();
+        $database = new Database;
+        $this->db = $database->connect();
 
-        $this->user = new user($this->db); 
+        $this->user = new User($this->db);
     }
 
 
     public function loginvalidation($data)
     {
 
-        if (isset($_POST["submit"])) {
-            $email = $_POST["email"];
-            $password = $_POST["password"];
+        if (isset($data["submit"])) {
+
+            
+            $this->email = $data["email"];
+            $this->password = $data["password"];
 
 
-            if (empty($email) || empty($password)) {
-                $_SESSION['error_message'][] = "Please fill all fields.";
+            if (empty($this->email) || empty($this->password)) {
+                $this->text_error['email'] = "Please fill all fields.";
                 header('Location: ../views/login.php');
                 exit();
             }
 
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $_SESSION['emailerror'] = "Please enter a valid email address.";
+            if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+                $this->text_error['email2'] = "Please enter a valid email address.";
             }
+
         }
 
-        $userdata = $this->user->getuserbyid($email);
+        if (!empty($this->text_error)) {
+            $_SESSION['text_error'] = $this->text_error;
+            header('Location: ../views/register.php');
+            exit();
+        }
 
-        if(!$userdata)
-        {
-            $_SESSION['!user'] = "User not found.";
+
+        $userdata = $this->user->getuserbyemail($this->email);
+
+        
+
+        if (!$userdata) {
+            $this->text_error['!user'] = "User not found.";
             return $this->redirectlogin();
         }
 
-        if(!password_verify($password, $userdata['password']))
-        {
-            $_SESSION['!password'] = "password is incorrect.";
+        if (!password_verify($this->password, $userdata['password'])) {
+            $this->text_error['!password'] = "password is incorrect.";
+
             return $this->redirectlogin();
         }
 
@@ -61,20 +78,25 @@ class logincontroller
         $_SESSION['user_role'] = $userdata['role'];
         $_SESSION['user_name'] = $userdata['name'];
 
-        // header('Location: ../views/dashboard.php');
-    }
 
+        header('Location: ../views/register.php');
+        exit();
 
-
-
-
-        public function redirectlogin()
-        {
-            header('../views/login.php');
         }
 
 
 
+
+
+    public function redirectlogin()
+    {
+        header('Location: ../views/login.php');
+        exit();
+    }
 }
+
+
+$login = new Logincontroller;
+$login->loginvalidation($_POST);
 
 
