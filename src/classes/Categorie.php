@@ -1,6 +1,5 @@
 <?php
 
-namespace Youcode\CareerLinkOop\categorie;
 
 class categorie
 {

@@ -33,7 +33,7 @@ unset($_SESSION['error_message'], $_SESSION['formdata']);
             <div class="col-md-6 right-container">
                 <div class="register-form">
                     <h2 class="mb-4">Register</h2>
-                    <form method="POST" action="../controllers/registerController.php">
+                    <form method="POST" action="../index.php">
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input name="name" type="text" class="form-control" id="name" placeholder="Enter your name"

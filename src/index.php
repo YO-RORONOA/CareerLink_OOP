@@ -1,7 +1,16 @@
 <?php
 
-use Youcode\CareerLinkOop\config\database;
+require './controllers/RegisterValidation.php';
+require './classes/User.php';
+require './config/config.php';
 
-require_once  realpath("vendor/autoload.php");
+
+// $db = new database;
+// $conn = $db->connect();
+
+
+$validate = new Registercontroller;
+$validate->validateform($_POST);
+$validate-> createuser();
 
 

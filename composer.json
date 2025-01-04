@@ -2,7 +2,7 @@
     "name": "youcode/career-link_oop",
     "autoload": {
         "psr-4": {
-            "load\\": "src/"
+            "App\\": "src/"
         }
     },
     "authors": [

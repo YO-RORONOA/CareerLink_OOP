@@ -1,6 +1,5 @@
 <?php
 
-namespace Youcode\CareerLinkOop\offre;
 
 
 class Offre
