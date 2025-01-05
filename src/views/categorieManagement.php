@@ -50,26 +50,10 @@ $categories = $controller->getAllCategories();
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Sports</td>
-                    <td>
-                        <a href="edit_category.php?id=1" class="btn btn-primary btn-sm">Modify</a>
-                        <a href="delete_category.php?id=1" class="btn btn-danger btn-sm">Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Movies</td>
-                    <td>
-                        <a href="edit_category.php?id=2" class="btn btn-primary btn-sm">Modify</a>
-                        <a href="delete_category.php?id=2" class="btn btn-danger btn-sm">Delete</a>
-                    </td>
-                </tr>
                 <?php foreach($categories as $categorie):?>
                 <tr>
                     <td><?= $index++;?></td>
-                    <td><?= htmlspecialchars($categorie['namecategorie']);?></td>
+                    <td><?= htmlspecialchars($categorie['name_categorie']);?></td>
                     <td>
                         <a href="edit_category.php?id=2" class="btn btn-primary btn-sm">Modify</a>
                         <a href="delete_category.php?id=2" class="btn btn-danger btn-sm">Delete</a>
