@@ -1,7 +1,7 @@
 <?php
 
 
-class categorie
+class Categorie
 {
     protected $db;
     protected $id;
@@ -49,6 +49,7 @@ class categorie
     {
         $query= "SELECT * from categorie";
         $stmt= $this->db->prepare($query);
+        $stmt->execute();
         return $stmt->fetchall(PDO::FETCH_ASSOC);
     }
 
