@@ -1,3 +1,26 @@
+<?php
+
+require_once __DIR__ . '/../controllers/categorieController.php';
+
+$controller = new CategorieController;
+$categories = $controller->getAllCategories();
+?>
+<?php if (isset($_SESSION['error_message'])): ?>
+    <div class="alert alert-danger">
+        <?= implode('<br>', $_SESSION['error_message']); ?>
+        <?php unset($_SESSION['error_message']); ?>
+    </div>
+<?php endif; ?>
+
+<?php if (isset($_SESSION['success_message'])): ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['success_message']; ?>
+        <?php unset($_SESSION['success_message']); ?>
+    </div>
+<?php endif; ?>
+<?php $index = 1; ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +36,9 @@
         <form action="../controllers/categorieController.php" method="POST" class="my-4">
             <div class="mb-3">
                 <label for="category_name" class="form-label">Category Name:</label>
-                <input type="text" class="form-control" id="category_name" name="category_name" required>
+                <input type="text" class="form-control" id="category_name" name="namecategorie" required>
             </div>
-            <button type="submit" class="btn btn-success">Add Category</button>
+            <button type="submit" name="submit" class="btn btn-success">Add Category</button>
         </form>
 
         <table class="table table-bordered">
@@ -43,6 +66,16 @@
                         <a href="delete_category.php?id=2" class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
+                <?php foreach($categories as $categorie):?>
+                <tr>
+                    <td><?= $index++;?></td>
+                    <td><?= htmlspecialchars($categorie['namecategorie']);?></td>
+                    <td>
+                        <a href="edit_category.php?id=2" class="btn btn-primary btn-sm">Modify</a>
+                        <a href="delete_category.php?id=2" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                <?php endforeach;?>
             </tbody>
         </table>
 
