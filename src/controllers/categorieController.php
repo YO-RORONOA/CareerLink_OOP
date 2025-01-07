@@ -59,6 +59,16 @@ class categorieController
     {
         return $this->categorie->getallcategories();
     }
+
+    public function getCategoryById($id)
+    {
+        $sql = "SELECT * FROM categorie WHERE id = :id LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
 
@@ -66,3 +76,13 @@ $controller = new categorieController;
 
 $controller->createCategorie($_POST);
 $categories = $controller->getAllCategories();
+
+
+if (isset($_GET['id'])) {
+    $controller = new CategorieController();
+    $category = $controller->getCategoryById($_GET['id']); 
+
+    // Return category data as JSON for the JavaScript AJAX call
+    echo json_encode($category);
+    exit;
+}

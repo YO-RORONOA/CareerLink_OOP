@@ -1,7 +1,6 @@
 <?php
-// require './../CareerLink_OOP/src/config/config.php';
+// require '../config/config.php';
 // require '../classes/User.php';
-
 
 
 session_start();
