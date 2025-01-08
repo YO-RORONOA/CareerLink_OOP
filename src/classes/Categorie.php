@@ -32,7 +32,7 @@ class Categorie
         $query = "UPDATE categorie set name_categorie = :newname where id= :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':newname', $newname);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
 

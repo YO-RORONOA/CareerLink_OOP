@@ -57,7 +57,7 @@ $categories = $controller->getAllCategories();
                     <td>
                     <a href="categorieManagement.php?id=<?=$categorie['id'];?>" class="btn btn-primary btn-sm" data-bs-toggle="modal" onclick="loadCategoryData(this)" 
                     data-bs-target="#editCategoryModal"  data-id="<?= $categorie['id']; ?>" >Modify</a>
-                    <a href="delete_category.php?id=2" class="btn btn-danger btn-sm">Delete</a>
+                    <a class="btn btn-danger btn-sm delete-btn" data-id="<?= $categorie['id']; ?>">Delete</a>
                     </td>
                 </tr>
                 <?php endforeach;?>

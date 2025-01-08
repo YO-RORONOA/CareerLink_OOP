@@ -69,13 +69,56 @@ class categorieController
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+
+    public function editCategorie($id, $categorieName)
+    {
+        if (empty($categorieName)) {
+            $_SESSION['error_modal'] = "Category name is required.";
+            header('Location: ../views/categorieManagement.php');
+            exit();
+        } elseif (strlen($categorieName) < 3) {
+            $_SESSION['error_modal'] = "Category name must be at least 3 characters.";
+            header('Location: ../views/categorieManagement.php');
+            exit();
+        }
+
+
+        if ($this->categorie->editcategorie($id, $categorieName)) {
+            $_SESSION['success_message'] = "Category successfully updated!";
+        } else {
+            $_SESSION['error_message'] = "Failed to update category.";
+        }
+        header('Location: ../views/categorieManagement.php');
+        exit();
+    }
+
+    public function deleteCategorie($id)
+{
+    // exit();
+    $this->categorie->deletecategorie($id);
 }
 
+    
+}
 
-$controller = new categorieController;
+// if(empty($_POST['category_id'])) {
 
-$controller->createCategorie($_POST);
-$categories = $controller->getAllCategories();
+// $controller = new categorieController;
+// $controller->createCategorie($_POST);
+// $categories = $controller->getAllCategories();
+// }
+
+// else
+// {
+//     $controller = new categorieController;
+//     $controller->editCategorie($_POST['category_id'], $_POST['namecategorie']);
+// }
+
+
+
+
+
 
 
 if (isset($_GET['id'])) {
@@ -84,5 +127,19 @@ if (isset($_GET['id'])) {
 
     // Return category data as JSON for the JavaScript AJAX call
     echo json_encode($category);
+    exit;
+}
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'delete') {
+    echo json_encode(["test"=> 'success']);
+    $controller = new CategorieController();
+    $categoryId = intval($_POST['category_id']);
+
+    if ($controller->deleteCategorie($categoryId)) {
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Failed to delete category.']);
+    }
     exit;
 }

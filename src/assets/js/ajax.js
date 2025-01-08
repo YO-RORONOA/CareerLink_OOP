@@ -10,10 +10,11 @@ async function  loadCategoryData(button) {
    
     xhr.onload = function() {
         if (xhr.status === 200) { 
-            console.log(xhr.responseText)
-            var category = JSON.parse(xhr.responseText); 
+            var category = JSON.parse(xhr.responseText);
+            console.log(category); 
             document.getElementById('category_modal').value = category.name_categorie; 
-            document.getElementById('category_id').value = category.id_categorie;      
+            document.getElementById('category_id').value = category.id;      
+            console.log(category.id); 
 
         } else {
             alert('Error loading category data.');
@@ -34,7 +35,43 @@ async function  loadCategoryData(button) {
     //     alert('Error loading category data.');
     // }
     
-
-
-
 }
+
+
+
+
+
+
+document.querySelectorAll('.delete-btn').forEach(button=>
+{
+    button.addEventListener('click', function()
+{
+    if(confirm('Are you sure you want to delete this category?'))
+    {
+        let categoryId = this.getAttribute('data-id');
+        console.log("Category ID:", categoryId);
+
+        fetch('../controllers/categorieController.php',
+        {
+            method: 'POST',
+            headers:
+            {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+
+            body: `action=delete&category_id=${categoryId}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+
+                alert('Category deleted successfully!');
+                this.closest('tr').remove(); // Remove the category row dynamically
+            } else {
+                alert('Error deleting category: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+});
+});
