@@ -96,24 +96,24 @@ class categorieController
     public function deleteCategorie($id)
 {
     // exit();
-    $this->categorie->deletecategorie($id);
+    return $this->categorie->deletecategorie($id);
 }
 
     
 }
 
-// if(empty($_POST['category_id'])) {
+if(empty($_POST['category_id'])) {
 
-// $controller = new categorieController;
-// $controller->createCategorie($_POST);
-// $categories = $controller->getAllCategories();
-// }
+$controller = new categorieController;
+$controller->createCategorie($_POST);
+$categories = $controller->getAllCategories();
+}
 
-// else
-// {
-//     $controller = new categorieController;
-//     $controller->editCategorie($_POST['category_id'], $_POST['namecategorie']);
-// }
+else
+{
+    $controller = new categorieController;
+    $controller->editCategorie($_POST['category_id'], $_POST['namecategorie']);
+}
 
 
 
@@ -132,7 +132,7 @@ if (isset($_GET['id'])) {
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'delete') {
-    echo json_encode(["test"=> 'success']);
+    // echo json_encode(["test"=> 'success']);
     $controller = new CategorieController();
     $categoryId = intval($_POST['category_id']);
 
